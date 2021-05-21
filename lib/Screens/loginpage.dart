@@ -16,24 +16,22 @@ class _LoginPage extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Khata Application'),
+        title: Text('Accounting App'),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+        crossAxisAlignment: CrossAxisAlignment.center,
+
         children: <Widget>[
           // Flexible(
           //   child: Hero(
-          //     tag: 'logo',
+          //     tag: 'l  ogo',
           //     child: Container(
           //       height: 200.0,
           //       child: Image.asset('images/logo.png'),
           //     ),
           //   ),
           // ),
-          Row(
-
-          ),
           TextField(
             keyboardType: TextInputType.name,
             textAlign: TextAlign.center,
@@ -58,45 +56,30 @@ class _LoginPage extends State<LoginPage> {
           SizedBox(
             height: 24.0,
           ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pushNamed(context, LandingPage.id);
-            },
-            child: Text('Login'),
-            ),
+          ButtonTheme(
+            minWidth: 200.0,
+            height: 100.0,
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, LandingPage.id);
+              },
+              child: Text(
+                'Login',
+              ),
+                style: ElevatedButton.styleFrom(
+                    primary: Colors.blueGrey,
+                    padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                    textStyle: TextStyle(
+                        fontSize: 20,
+                        )),
+
+              ),
+          ),
+
         ],
       ),
     );
   }
 }
 
-// Scaffold(
-// appBar: AppBar(
-// title: Text('Khata Application'),
-// ),
-// body: Column(
-// mainAxisAlignment: MainAxisAlignment.center,
-// crossAxisAlignment: CrossAxisAlignment.stretch,
-// children: [
-// GestureDetector(
-// onTap: () {
-// Navigator.pushNamed(context,LandingPage.id);
-// },
-// child: Container(
-// color: Colors.green,
-// margin: EdgeInsets.only(top: 10.0),
-// width: 50.0,
-// height: 50.0,
-// child: Center(
-// child: Text(
-// 'CALCULATE',
-// style: TextStyle(
-// fontSize: 30.0,
-// fontWeight: FontWeight.w500,
-// ),
-// ),
-// ),
-// ),
-// ),
-// ],
-// ));
+
