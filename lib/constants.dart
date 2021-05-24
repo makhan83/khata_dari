@@ -5,7 +5,7 @@ const kTextFieldDecoration = InputDecoration(
   hintStyle: TextStyle(
     color: Colors.grey,
   ),
-  contentPadding: EdgeInsets.symmetric(vertical: 10.0,horizontal: 100.0),
+  contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 100.0),
   border: OutlineInputBorder(
     borderRadius: BorderRadius.all(Radius.circular(32.0)),
   ),
