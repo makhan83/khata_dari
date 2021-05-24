@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:khata_dari/Screens/add_farmer_page.dart';
 import 'package:khata_dari/Screens/landingpage.dart';
 import 'Screens/loginpage.dart';
+import 'datatable.dart';
+
 
 void main() => runApp(KhataDari());
 
@@ -15,10 +18,13 @@ class KhataDari extends StatelessWidget {
         //scaffoldBackgroundColor: Color(0xff0A0E21),
       ),
       // home: HomePage(),
-      initialRoute: LoginPage.id,
+      initialRoute: DataTableDemo.id,
       routes: {
         LoginPage.id:(context) => LoginPage(),
         LandingPage.id :(context) => LandingPage(),
+        MyCustomForm.id:(context) => MyCustomForm(),
+        DataTableDemo.id:(context) => DataTableDemo(),
+
       },
 
     );
