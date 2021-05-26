@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:khata_dari/constants.dart';
+import 'package:khata_dari/Brains/constants.dart';
 
 class IconCard extends StatelessWidget {
   final String contentText;
