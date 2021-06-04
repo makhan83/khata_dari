@@ -1,4 +1,4 @@
-class Farmer {
+class FarmerModel {
   // ignore: non_constant_identifier_names
   String? farmer_id;
   // ignore: non_constant_identifier_names
@@ -35,14 +35,15 @@ class Farmer {
   String? created_at;
   // ignore: non_constant_identifier_names
   String? created_by;
+  String? farmer_id_ext;
 
   String? dummy;
 
   // ignore: non_constant_identifier_names
-  Farmer({this.farmer_id, this.full_name,this.father_name,this.village_town_city,this.pincode,this.district,this.state_name,this.mobile_primary,this.phone_secondary,this.email,this.govt_id_nbr,this.govt_id_type,this.bank_name,this.bank_acct_nbr,this.bank_acct_type,this.ifsc_code,this.created_at, this.created_by, this.dummy});
+  FarmerModel({this.farmer_id, this.full_name,this.father_name,this.village_town_city,this.pincode,this.district,this.state_name,this.mobile_primary,this.phone_secondary,this.email,this.govt_id_nbr,this.govt_id_type,this.bank_name,this.bank_acct_nbr,this.bank_acct_type,this.ifsc_code,this.created_at, this.created_by, this.farmer_id_ext,this.dummy});
 
-  factory Farmer.fromJson(Map<String, dynamic> json) {
-    return Farmer(
+  factory FarmerModel.fromJson(Map<String, dynamic> json) {
+    return FarmerModel(
       farmer_id: json['farmer_id'] as String?,
       full_name: json['full_name'] as String?,
       father_name: json['father_name'] as String?,
@@ -61,6 +62,29 @@ class Farmer {
       ifsc_code: json['ifsc_code'] as String?,
       created_at: json['created_at'] as String?,
       created_by: json['created_by'] as String?,
+      farmer_id_ext: json['farmer_id_ext'] as String?
     );
   }
+
+  static List<FarmerModel> fromJsonList(List list) {
+    return list.map((item) => FarmerModel.fromJson(item)).toList();
+  }
+  //this method will prevent the override of toString
+  String userAsString() {
+    return '#${this.farmer_id} ${this.full_name}';
+  }
+
+  ///this method will prevent the override of toString
+  bool? userFilterByCreationDate(String filter) {
+    return this.created_at?.toString().contains(filter);
+  }
+
+  ///custom comparing function to check if two users are equal
+  bool isEqual(FarmerModel? model) {
+    return this.farmer_id == model?.farmer_id;
+  }
+
+  @override
+  String toString() => full_name!;
+
 }

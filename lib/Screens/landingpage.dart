@@ -1,4 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:khata_dari/Brains/constants.dart';
+import 'package:khata_dari/Screens/cash_payment.dart';
+import 'package:khata_dari/Screens/loginpage.dart';
+import 'package:khata_dari/Screens/new_farmer_page.dart';
+import 'package:khata_dari/Screens/show_ledger_page.dart';
+import 'view_farmer_page.dart';
+
 
 class LandingPage extends StatelessWidget {
   static const String id = 'landing_page';
@@ -7,7 +15,7 @@ class LandingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            backgroundColor: Colors.pink,
+            backgroundColor: kPrimaryColour,
             title: Text("Muneer Mango Centre"),
             elevation: 0.0,
             actions: [
@@ -55,7 +63,9 @@ class LandingPage extends StatelessWidget {
                 padding: EdgeInsets.all(8.0),
 
                 child: TextButton.icon(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, LoginPage.id);
+                    },
                     icon: Icon(
                       Icons.logout,
                       color: Colors.white,
@@ -83,70 +93,147 @@ class LandingPage extends StatelessWidget {
                   ListTile(title: Text("Log Out")),
                 ]))),
         body: Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          //color: Colors.white,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(
-                margin: EdgeInsets.only(top: 20.0, bottom: 20.0),
-                child: Text(
-                  'Dashboard',
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 35.0,
-                    color: Colors.pink,
-                  ),
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            //   height: MediaQuery.of(context).size.height,
+            //   width: MediaQuery.of(context).size.width,
+            //color: Colors.white,
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  DashContainer(),
-                  //SizedBox(width: 50.0,),
-                  DashContainer(),
-                  //SizedBox(width: 50.0,),
-                  DashContainer(),
-                  //SizedBox(width: 50.0,),
-                  DashContainer(),
-                  DashContainer(),
-            ]
-          ),
-              //SizedBox(height: 50.0,),
-              Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    DashContainer(),
-                    //SizedBox(width: 50.0,),
-                    DashContainer(),
-                    //SizedBox(width: 50.0,),
-                    DashContainer(),
-                    //SizedBox(width: 50.0,),
-                    DashContainer(),
-                    DashContainer(),
-                  ]
-              ),
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(top: 20.0, bottom: 20.0),
+                          child: Text(
+                            'Dashboard',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 35.0,
+                              color: Colors.pink,
+                            ),
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          //crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            DashContainer(
+                                buttonName: 'Ledger',
+                                onPressed: (){
+                                  Navigator.pushNamed(context, ShowLedger.id);
+                                }
+                            ),
+                            SizedBox(
+                              width: 50.0,
+                            ),
+                            DashContainer(
+                                buttonName: 'Add New Farmer',
+                                onPressed: (){
+                                  Navigator.pushNamed(context, NewFarmer.id);
+                                }
+                            ),
+                            SizedBox(
+                              width: 50.0,
+                            ),
+                            DashContainer(
+                                buttonName: 'Farmer List',
+                                onPressed: (){
+                                  Navigator.pushNamed(context,ViewFarmer.id);
+                                }
+                            ),
+                            SizedBox(
+                              width: 50.0,
+                            ),
+                            DashContainer(
+                                buttonName: 'Cash Payments',
+                                onPressed: (){
+                                  Navigator.pushNamed(context,CashPayment.id);
+                                }
+                            ),
+                          ],),
+                      ],
+                    ),
+                  ),
 
-    ],)
-    )
+                  // Expanded(
+                  //   child: Row(
+                  //     mainAxisAlignment: MainAxisAlignment.center,
+                  //     //crossAxisAlignment: CrossAxisAlignment.start,
+                  //       children: [
+                  //         DashContainer(
+                  //           buttonName: 'Ledger',
+                  //           onPressed: (){
+                  //             Navigator.pushNamed(context, ShowLedger.id);
+                  //           }
+                  //           ),
+                  //         SizedBox(
+                  //           width: 50.0,
+                  //         ),
+                  //         DashContainer(
+                  //             buttonName: 'Farmer Profile',
+                  //             onPressed: (){
+                  //               Navigator.pushNamed(context, NewFarmer.id);
+                  //             }
+                  //         ),
+                  //       ],),
+                  // ),
+            //SizedBox(height: 50.0,),
+            // Expanded(
+            //   child:
+            //       Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            //     DashContainer(),
+            //     SizedBox(
+            //       width: 50.0,
+            //     ),
+            //     DashContainer(),
+            //     SizedBox(
+            //       width: 50.0,
+            //     ),
+            //     DashContainer(),
+            //     SizedBox(
+            //       width: 50.0,
+            //     ),
+            //     DashContainer(),
+            //     SizedBox(
+            //       width: 50.0,
+            //     ),
+            //     DashContainer(),
+            //   ]),
+            // ),
+          ],
+        )
+      )
     );
   }
 }
 
 class DashContainer extends StatelessWidget {
-  const DashContainer({
-    Key key,
-  }) : super(key: key);
+
+  DashContainer({this.onPressed,this.buttonName});
+  final Function? onPressed;
+  final String? buttonName;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 155.0,
-      width: 195.0,
+      height: 50.0,
+      width: 100.0,
+      child: TextButton(
+        child: Text(
+          buttonName!,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+        onPressed: onPressed as void Function()?,
+      ),
       decoration: BoxDecoration(
-          color: Colors.pink[700],
+          color: kPrimaryColour,
           borderRadius: BorderRadius.circular(15.0),
           boxShadow: [
             BoxShadow(
@@ -154,22 +241,21 @@ class DashContainer extends StatelessWidget {
               blurRadius: 20.0,
               spreadRadius: 5.0,
             )
-          ]
-      ),
+          ]),
     );
   }
 }
 
 class RoundIconButton extends StatelessWidget {
   RoundIconButton({this.icon, this.onPressed});
-  final IconData icon;
-  final Function onPressed;
+  final IconData? icon;
+  final Function? onPressed;
   @override
   Widget build(BuildContext context) {
     return RawMaterialButton(
       child: Icon(icon),
       shape: CircleBorder(),
-      onPressed: onPressed,
+      onPressed: onPressed as void Function()?,
       elevation: 6.0,
       fillColor: Color(0xFF4C4F5E),
       constraints: BoxConstraints.tightFor(

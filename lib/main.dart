@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:khata_dari/Screens/dashboard_page.dart';
 import 'package:khata_dari/Screens/landingpage.dart';
 import 'package:khata_dari/Screens/new_farmer_page.dart';
 import 'Screens/loginpage.dart';
 import 'Screens/view_farmer_page.dart';
 import 'package:khata_dari/Screens/show_ledger_page.dart';
+import 'package:khata_dari/Screens/cash_payment.dart';
+
+
 //import 'package:dropdown_search/dropdown_search.dart';
 
 
@@ -21,15 +25,17 @@ class KhataDari extends StatelessWidget {
         //test commit
       ),
       // home: HomePage(),
-      initialRoute: ShowLedger.id,
+      initialRoute: CashPayment.id,
       routes: {
         LoginPage.id:(context) => LoginPage(),
         LandingPage.id :(context) => LandingPage(),
         ViewFarmer.id:(context) => ViewFarmer(),
         NewFarmer.id:(context) => NewFarmer(),
         ShowLedger.id:(context) => ShowLedger(),
-      },
+        CashPayment.id:(context) => CashPayment(),
+        MyAppDash.id:(context) => MyAppDash(),
 
+      },
     );
   }
 }

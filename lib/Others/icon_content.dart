@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:khata_dari/Brains/constants.dart';
 
 class IconCard extends StatelessWidget {
-  final String contentText;
-  final IconData contentIcon;
+  final String? contentText;
+  final IconData? contentIcon;
 
   IconCard({this.contentText,this.contentIcon});
 
@@ -19,7 +19,7 @@ class IconCard extends StatelessWidget {
         SizedBox(
           height: 15.0,
         ),
-        Text(contentText,style:kLabelTextStyle)
+        Text(contentText!,style:kLabelTextStyle)
 
       ],
     );

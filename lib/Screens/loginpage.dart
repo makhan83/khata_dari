@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:khata_dari/Brains/constants.dart';
 import 'package:khata_dari/Others/add_farmer_page.dart';
+import 'package:khata_dari/Screens/landingpage.dart';
 
 
 class LoginPage extends StatefulWidget {
@@ -9,8 +11,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPage extends State<LoginPage> {
-  String username;
-  String password;
+  String? username;
+  String? password;
 
   @override
   Widget build(BuildContext context) {
@@ -62,11 +64,11 @@ class _LoginPage extends State<LoginPage> {
                 padding: const EdgeInsets.all(0),
                 child: Material(
                     borderRadius: BorderRadius.circular(5.0),
-                    color: Colors.pink,
+                    color: kPrimaryColour,
                     elevation: 0.0,
                     child: MaterialButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, MyCustomForm.id);
+                        Navigator.pushNamed(context,LandingPage.id);
                       },
 //                      minWidth: MediaQuery.of(context).size.width,
                       child: Text(
