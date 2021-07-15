@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:khata_dari/Brains/constants.dart';
+import '../Brains/constants.dart';
+import '../Screens/landingpage.dart';
 import '../Brains/Services.dart';
 import '../Brains/ledger_class.dart';
 import 'package:dropdown_search/dropdown_search.dart';
@@ -32,8 +33,7 @@ class ShowLedgerState extends State<ShowLedger> {
   void initState() {
     super.initState();
     _ledger = [];
-    _farmers = [];
-    String init_filter = '%';
+    //_farmers = [];
     //_isUpdating = false;
     _titleProgress = widget.title;
     _scaffoldKey = GlobalKey(); // key to get the context to show a SnackBar
@@ -91,7 +91,7 @@ class ShowLedgerState extends State<ShowLedger> {
 
   _getLedger() {
     _showProgress('Loading Ledger...');
-    Services.getLedger(_selectedFarmer!.farmer_id).then((ledger) {
+    Services.getLedger(_selectedFarmer!.farmerId).then((ledger) {
       setState(() {
         _ledger = ledger;
       });
@@ -113,8 +113,13 @@ class ShowLedgerState extends State<ShowLedger> {
           columnSpacing: 20.0,
           showBottomBorder: true,
           dataRowHeight: 25.0,
-          dataTextStyle: TextStyle(fontSize: 12.0,color: Colors.white),
-          //headingRowColor: MaterialStateColor.resolveWith((states) => Colors.pink[50]),
+          // decoration: BoxDecoration(
+          //       border: Border.all(width: 1,),),
+          dataTextStyle: TextStyle(fontSize: 12.0,
+              //color: Colors.white,
+          ),
+          //headingRowColor: MaterialStateColor.resolveWith((states) => kPrimaryColour[50]),
+
           headingTextStyle: TextStyle(
             color: kPrimaryColour,
           ),
@@ -177,170 +182,134 @@ class ShowLedgerState extends State<ShowLedger> {
   // UI
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: _scaffoldKey,
-      appBar: AppBar(
-        title: Text(_titleProgress),
-        backgroundColor: kPrimaryColour,// we show the progress in the title...
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.home,),
-            tooltip: 'Home',
-            onPressed: () {
-                Navigator.pop(context);
-            },
-          )
-        ],
-      ),
-      drawer: Drawer(
-          child: Scaffold(
-              appBar: AppBar(
-                  elevation: 0.0,
-                  title: Text("Menu"),
-                  backgroundColor: kPrimaryColour),
-              body: Column(children: <Widget>[
-                ListTile(title: Text("Dashboard")),
-                ListTile(title: Text("Arrivals")),
-                ListTile(title: Text("Sales")),
-                ListTile(title: Text("Ledger and Accounts")),
-                ListTile(title: Text("Payments")),
-                ListTile(title: Text("Profiles")),
-                ListTile(title: Text("Log Out")),
-              ]))),
-      body: Container(
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            //: Container(),
-            Expanded(
-              //flex: 2,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.all(25),
-                    child: Container(
-                      child: Text(
-                        'Ledger Statement',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 35.0,
-                          color: kPrimaryColour,
-                        ),
-                      ), //Ledger name
-                    ),
-                  ),
-
-                  Container(
-                    width: 350.0,
-                    child: DropdownSearch<FarmerModel>(
-                      showSelectedItem: true,
-                      showSearchBox: true,
-                      autoFocusSearchBox: true,
-                      compareFn: (i, s) => i.isEqual(s),
-                      label: "Select Farmer name : Fav Option",
-                      //onFind: (filter) => _getFarmers(filter),
-                      onFind: (filter) =>  Services().getFarmersFilter(filter),
-                      onChanged: (data) {
-                        print(data);
-                        setState(() {
-                          _selectedFarmer = data;
-                          _getLedger();
-                          print(_selectedFarmer!.farmer_id);
-                        });
-                      },
-                      dropdownBuilder: _customDropDownExample,
-                      popupItemBuilder: _customPopupItemBuilderExample2,
-                      popupSafeArea: PopupSafeArea(bottom: true),
-                      mode: Mode.MENU,
-                      showFavoriteItems: true,
-                      favoriteItemsAlignment: MainAxisAlignment.start,
-                      favoriteItems: (item) {
-                        return item.where((e) => e.full_name!.contains("Mus")).toList();
-                      },
-                      favoriteItemBuilder: (context, item) {
-                        return Container(
-                          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 6),
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Colors.grey),
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.blueGrey[900]),
-                          child: Text(
-                            "${item.full_name}",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                  Expanded(child: _dataBody()),
-                ],
-              ),
-
-            ),
-            // Expanded(
-            //   //flex: 1,
-            //   child: Column(
-            //     mainAxisAlignment: MainAxisAlignment.start,
-            //     crossAxisAlignment: CrossAxisAlignment.stretch,
-            //     children: [
-            //       // Padding(
-            //       //   padding: EdgeInsets.all(25),
-            //       //   child: Container(
-            //       //     child: Text(
-            //       //       'Selection',
-            //       //       textAlign: TextAlign.left,
-            //       //       style: TextStyle(
-            //       //         fontWeight: FontWeight.normal,
-            //       //         fontSize: 20.0,
-            //       //         color: kPrimaryColour,
-            //       //       ),
-            //       //     ), //Ledger name
-            //       //   ),
-            //       // ),
-            //               Divider(),
-            //               // Padding(
-            //               //   padding: EdgeInsets.all(8),
-            //               //   child: Container(
-            //               //     width: 200,
-            //               //     child: Padding(
-            //               //       padding: EdgeInsets.all(0.0),
-            //               //       child: TextField(
-            //               //           controller: _iDController,
-            //               //           keyboardType: TextInputType.name,
-            //               //           textAlign: TextAlign.left,
-            //               //           decoration:
-            //               //           InputDecoration(labelText: "Full Name")),
-            //               //     ),
-            //               //   ),
-            //               // ),
-            //                 SizedBox(
-            //                   height: 20.0,
-            //                 ),
-            //
-            //
-            //                 // DropdownButton<Farmer>(
-            //                 //   isExpanded: true,
-            //                 //   value: _selectedFarmer,
-            //                 //   items: _farmers!.map((item) => buildDropdownMenuItem(item)).toList(),
-            //                 //   onChanged: (Farmer? item){
-            //                 //     setState(() {
-            //                 //       _selectedFarmer = item;
-            //                 //       _getLedger();
-            //                 //       print(_selectedFarmer!.farmer_id);
-            //                 //     });
-            //                 //   },
-            //                 // )
-            //     ],
-            //   ),
-            // ),
-
-
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        key: _scaffoldKey,
+        appBar: AppBar(
+          title: Text(kTitle),
+          bottom: TabBar(
+            tabs: [
+              Tab(text: 'Farmer'),
+              Tab(text: 'Buyer'),
+              Tab(text: 'Labour Group'),
+            ],
+          ),
+          backgroundColor: kPrimaryColour,// we show the progress in the title...
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.home,),
+              tooltip: 'Home',
+              onPressed: () {
+                  Navigator.pushNamed(context, LandingPage.id);
+              },
+            )
           ],
         ),
+        drawer: Drawer(
+            child: Scaffold(
+                appBar: AppBar(
+                    elevation: 0.0,
+                    title: Text("Menu"),
+                    backgroundColor: kPrimaryColour),
+                body: Column(children: <Widget>[
+                  ListTile(title: Text("Dashboard")),
+                  ListTile(title: Text("Arrivals")),
+                  ListTile(title: Text("Sales")),
+                  ListTile(title: Text("Ledger and Accounts")),
+                  ListTile(title: Text("Payments")),
+                  ListTile(title: Text("Profiles")),
+                  ListTile(title: Text("Log Out")),
+                ]))),
+        body: TabBarView(
+          children: [
+            Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(
+                    flex:1,
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.all(25),
+                          child: Container(
+                            child: Text(
+                              'Ledger Statement',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 35.0,
+                                color: kPrimaryColour,
+                              ),
+                            ), //Ledger name
+                          ),
+                        ),
+                        Container(
+                          width: 350.0,
+                          child: DropdownSearch<FarmerModel>(
+                            showSelectedItem: true,
+                            showSearchBox: true,
+                            autoFocusSearchBox: true,
+                            compareFn: (i, s) => i.isEqual(s),
+                            label: "Select Farmer name : Fav Option",
+                            //onFind: (filter) => _getFarmers(filter),
+                            onFind: (filter) =>  Services().getFarmersFilter(filter),
+                            onChanged: (data) {
+                              print(data);
+                              setState(() {
+                                _selectedFarmer = data;
+                                _getLedger();
+                                print(_selectedFarmer!.farmerId);
+                              });
+                            },
+                            dropdownBuilder: _customDropDownExample,
+                            popupItemBuilder: _customPopupItemBuilderExample2,
+                            popupSafeArea: PopupSafeArea(bottom: true),
+                            mode: Mode.MENU,
+                            showFavoriteItems: true,
+                            favoriteItemsAlignment: MainAxisAlignment.start,
+                            favoriteItems: (item) {
+                              return item.where((e) => e.fullName!.contains("Mus")).toList();
+                            },
+                            favoriteItemBuilder: (context, item) {
+                              return Container(
+                                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.grey),
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: Colors.blueGrey[900]),
+                                child: Text(
+                                  "${item.fullName}",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: Column(
+                      children: [
+                        _dataBody(),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Icon(Icons.directions_car),
+            Icon(Icons.directions_transit),
+          ],
+        ),
+
+
+
       ),
     );
   }
@@ -358,11 +327,11 @@ class ShowLedgerState extends State<ShowLedger> {
               // this does not work - throws 404 error
               // backgroundImage: NetworkImage(item.avatar ?? ''),
         ),
-            title: Text(item.full_name.toString()),
+            title: Text(item.fullName.toString()),
             subtitle: Text(
-              item.village_town_city.toString(),
+              item.villageTownCityName.toString(),
         ),
-        trailing: Text(item.farmer_id_ext.toString()),
+        trailing: Text(item.farmerIdExt.toString()),
       ),
     );
   }
@@ -384,9 +353,9 @@ class ShowLedgerState extends State<ShowLedger> {
       ),
       child: ListTile(
         selected: isSelected,
-        title: Text(item.full_name.toString()),
-        subtitle: Text(item.village_town_city.toString()),
-        trailing: Text(item.farmer_id_ext.toString()),
+        title: Text(item.fullName.toString()),
+        subtitle: Text(item.villageTownCityName.toString()),
+        trailing: Text(item.farmerIdExt.toString()),
         leading: CircleAvatar(
           //backgroundImage: AssetImage('images/FruitnetLogo_1.png'),
           backgroundImage: NetworkImage("https://miro.medium.com/proxy/1*ilC2Aqp5sZd1wi0CopD1Hw.png"),

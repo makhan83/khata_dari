@@ -19,8 +19,8 @@ class _LoginPage extends State<LoginPage> {
     return Scaffold(
       appBar: AppBar(
           elevation: 0.0,
-          //backgroundColor: Colors.pink,
-          title: Text("Muneer Mango Centre")),
+          backgroundColor: kPrimaryColour,
+          title: Text(kTitle)),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

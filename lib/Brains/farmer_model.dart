@@ -1,68 +1,53 @@
 class FarmerModel {
-  // ignore: non_constant_identifier_names
-  String? farmer_id;
-  // ignore: non_constant_identifier_names
-  String? full_name;
-  // ignore: non_constant_identifier_names
-  String? father_name;
-  // ignore: non_constant_identifier_names
-  String? village_town_city;
-  // ignore: non_constant_identifier_names
+
+  String? farmerId;
+  String? fullName;
+  String? fatherName;
+  String? villageTownCityName;
   String? pincode;
-  // ignore: non_constant_identifier_names
   String? district;
-  // ignore: non_constant_identifier_names
-  String? state_name;
-  // ignore: non_constant_identifier_names
-  String? mobile_primary;
-  // ignore: non_constant_identifier_names
-  String? phone_secondary;
-  // ignore: non_constant_identifier_names
+  String? stateName;
+  String? mobilePrimary;
+  String? phoneSecondary;
   String? email;
-  // ignore: non_constant_identifier_names
-  String? govt_id_nbr;
-  // ignore: non_constant_identifier_names
-  String? govt_id_type;
-  // ignore: non_constant_identifier_names
-  String? bank_name;
-  // ignore: non_constant_identifier_names
-  String? bank_acct_nbr;
-  // ignore: non_constant_identifier_names
-  String? bank_acct_type;
-  // ignore: non_constant_identifier_names
-  String? ifsc_code;
-  // ignore: non_constant_identifier_names
-  String? created_at;
-  // ignore: non_constant_identifier_names
-  String? created_by;
-  String? farmer_id_ext;
+  String? govtIdNbr;
+  String? govtIdType;
+  String? bankName;
+  String? bankAcctNbr;
+  String? bankAcctType;
+  String? ifscCode;
+  String? createdAt;
+  String? createdBy;
+  String? farmerIdExt;
+
 
   String? dummy;
 
   // ignore: non_constant_identifier_names
-  FarmerModel({this.farmer_id, this.full_name,this.father_name,this.village_town_city,this.pincode,this.district,this.state_name,this.mobile_primary,this.phone_secondary,this.email,this.govt_id_nbr,this.govt_id_type,this.bank_name,this.bank_acct_nbr,this.bank_acct_type,this.ifsc_code,this.created_at, this.created_by, this.farmer_id_ext,this.dummy});
+  FarmerModel({this.farmerId, this.fullName,this.fatherName,this.villageTownCityName,this.pincode,this.district,this.stateName,this.mobilePrimary,this.phoneSecondary,this.email,this.govtIdNbr,this.govtIdType,this.bankName,this.bankAcctNbr,this.bankAcctType,this.ifscCode,this.createdAt, this.createdBy, this.farmerIdExt,this.dummy});
 
   factory FarmerModel.fromJson(Map<String, dynamic> json) {
     return FarmerModel(
-      farmer_id: json['farmer_id'] as String?,
-      full_name: json['full_name'] as String?,
-      father_name: json['father_name'] as String?,
-      village_town_city: json['village_town_city'] as String?,
+      farmerId: json['farmer_id'] as String?,
+      fullName: json['full_name'] as String?,
+      fatherName: json['father_name'] as String?,
+      villageTownCityName: json['village_town_city'] as String?,
       pincode: json['pincode'] as String?,
       district: json['district'] as String?,
-      state_name: json['state_name'] as String?,
-      mobile_primary: json['mobile_primary'] as String?,
-      phone_secondary: json['phone_secondary'] as String?,
+      stateName: json['state_name'] as String?,
+      mobilePrimary: json['mobile_primary'] as String?,
+      phoneSecondary: json['phone_secondary'] as String?,
       email: json['email'] as String?,
-      govt_id_nbr: json['govt_id_nbr'] as String?,
-      govt_id_type: json['govt_id_type'] as String?,
-      bank_name: json['bank_name'] as String?,
-      bank_acct_nbr: json['bank_acct_nbr'] as String?,
-      bank_acct_type: json['bank_acct_type'] as String?,
-      ifsc_code: json['ifsc_code'] as String?,
-      created_at: json['created_at'] as String?,
-      created_by: json['created_by'] as String?,
-      farmer_id_ext: json['farmer_id_ext'] as String?
+      govtIdNbr: json['govt_id_nbr'] as String?,
+      govtIdType: json['govt_id_type'] as String?,
+      bankName: json['bank_name'] as String?,
+      bankAcctNbr: json['bank_acct_nbr'] as String?,
+      bankAcctType: json['bank_acct_type'] as String?,
+      ifscCode: json['ifsc_code'] as String?,
+      createdAt: json['created_at'] as String?,
+      createdBy: json['created_by'] as String?,
+      farmerIdExt: json['farmer_id_ext'] as String?
+
     );
   }
 
@@ -71,20 +56,20 @@ class FarmerModel {
   }
   //this method will prevent the override of toString
   String userAsString() {
-    return '#${this.farmer_id} ${this.full_name}';
+    return '#${this.farmerId} ${this.fullName}';
   }
 
   ///this method will prevent the override of toString
   bool? userFilterByCreationDate(String filter) {
-    return this.created_at?.toString().contains(filter);
+    return this.createdAt?.toString().contains(filter);
   }
 
   ///custom comparing function to check if two users are equal
   bool isEqual(FarmerModel? model) {
-    return this.farmer_id == model?.farmer_id;
+    return this.farmerId == model?.farmerId;
   }
 
   @override
-  String toString() => full_name!;
+  String toString() => fullName!;
 
 }

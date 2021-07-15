@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:khata_dari/Brains/Services.dart';
 import 'package:khata_dari/Brains/constants.dart';
 import 'package:khata_dari/Screens/landingpage.dart';
-import 'package:khata_dari/Screens/view_farmer_page.dart';
+import 'package:khata_dari/Screens/view_profile_page.dart';
 import '../Brains/farmer_profile.dart';
 
 class NewFarmer extends StatefulWidget {
@@ -477,7 +477,7 @@ class _NewFarmerState extends State<NewFarmer> {
                 child: MaterialButton(
                   onPressed: () {
                     _addFarmer();
-                    Navigator.pushNamed(context, ViewFarmer.id);
+                    Navigator.pushNamed(context, ViewProfile.id);
                   },
                   // minWidth: MediaQuery.of(context).size.width,
                   child: Text(

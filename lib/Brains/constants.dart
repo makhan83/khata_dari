@@ -29,4 +29,14 @@ const kBottomContainerHeight = 80.0;
 const kActiveCardColour = Color(0XFF1D1E33);
 const kBottomContainerColour = Color(0xFFEB1555);
 const kInactiveCardColour = Color(0xFF111328);
-const kPrimaryColour = Color(0xFFC2185B);
+const kPrimaryColour = Color(0xFF5585AA);
+const kComplementaryColour = Color(0xFFe4ebf1); // 779DBB
+const kUnselectedLabelColour = Color(0xFF5585AA);
+//const kPrimaryColour = Color(0xFFC2185B);
+const kSeasonYear = '2000';
+const kIconColour = Colors.white;
+const kBorderColour = Colors.blueAccent;
+const kTitle = 'Musavir Khan';
+const kTableTextColour = Color(0xFF330000);
+
+

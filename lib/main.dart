@@ -1,38 +1,50 @@
 import 'package:flutter/material.dart';
+import 'package:khata_dari/Brains/constants.dart';
+import 'package:khata_dari/Screens/Sales_page.dart';
+import 'package:khata_dari/Screens/account_receivables.dart';
+import 'package:khata_dari/Screens/arrivals_page.dart';
 import 'package:khata_dari/Screens/dashboard_page.dart';
 import 'package:khata_dari/Screens/landingpage.dart';
-import 'package:khata_dari/Screens/new_farmer_page.dart';
+import 'package:khata_dari/Screens/new_profile_page.dart';
+import 'package:khata_dari/Screens/update_profile.dart';
 import 'Screens/loginpage.dart';
-import 'Screens/view_farmer_page.dart';
+import 'Screens/view_profile_page.dart';
 import 'package:khata_dari/Screens/show_ledger_page.dart';
-import 'package:khata_dari/Screens/cash_payment.dart';
-
-
-//import 'package:dropdown_search/dropdown_search.dart';
-
+import 'package:khata_dari/Screens/accounts_payable.dart';
 
 void main() => runApp(KhataDari());
 
 class KhataDari extends StatelessWidget {
 
+
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark().copyWith(
+      //theme: ThemeData.light().copyWith(
+      theme: ThemeData(
+      brightness: Brightness.light,
+      //bottomAppBarColor: Colors.grey,
+      //primaryColor: Colors.red[800],
+      accentColor: kUnselectedLabelColour,
         //primaryColor: Color(0xff0A0E21),
-        //scaffoldBackgroundColor: Color(0xff0A0E21),
-        //test commit
+
+        //scaffoldBackgroundColor: Color(0xff72AA9B),
       ),
       // home: HomePage(),
-      initialRoute: CashPayment.id,
+      initialRoute: Sales.id,
       routes: {
         LoginPage.id:(context) => LoginPage(),
         LandingPage.id :(context) => LandingPage(),
-        ViewFarmer.id:(context) => ViewFarmer(),
-        NewFarmer.id:(context) => NewFarmer(),
+        ViewProfile.id:(context) => ViewProfile(0),
+        NewProfile.id:(context) => NewProfile(),
         ShowLedger.id:(context) => ShowLedger(),
         CashPayment.id:(context) => CashPayment(),
+        UpdateFarmer.id:(context) => UpdateFarmer(),
+        AcctReceivable.id:(context) => AcctReceivable(),
+        Sales.id:(context) => Sales(),
+        Arrivals.id:(context) => Arrivals(),
         MyAppDash.id:(context) => MyAppDash(),
 
       },

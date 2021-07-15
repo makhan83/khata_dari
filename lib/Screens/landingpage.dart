@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:khata_dari/Brains/constants.dart';
-import 'package:khata_dari/Screens/cash_payment.dart';
-import 'package:khata_dari/Screens/loginpage.dart';
-import 'package:khata_dari/Screens/new_farmer_page.dart';
-import 'package:khata_dari/Screens/show_ledger_page.dart';
-import 'view_farmer_page.dart';
+import '../Brains/constants.dart';
+import '../Screens/account_receivables.dart';
+import '../Screens/arrivals_page.dart';
+import '../Screens/accounts_payable.dart';
+import '../Screens/loginpage.dart';
+import '../Screens/new_profile_page.dart';
+import '../Screens/show_ledger_page.dart';
+import 'view_profile_page.dart';
 
 
 class LandingPage extends StatelessWidget {
@@ -16,49 +18,9 @@ class LandingPage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
             backgroundColor: kPrimaryColour,
-            title: Text("Muneer Mango Centre"),
+            title: Text(kTitle),
             elevation: 0.0,
             actions: [
-              Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        "Arrivals",
-                        style: TextStyle(color: Colors.white),
-                      ))),
-              Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        "Sales",
-                        style: TextStyle(color: Colors.white),
-                      ))),
-              Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        "Ledger",
-                        style: TextStyle(color: Colors.white),
-                      ))),
-              Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        "Payments",
-                        style: TextStyle(color: Colors.white),
-                      ))),
-              Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        "Profiles",
-                        style: TextStyle(color: Colors.white),
-                      ))),
               Padding(
                 padding: EdgeInsets.all(8.0),
 
@@ -82,7 +44,7 @@ class LandingPage extends StatelessWidget {
                 appBar: AppBar(
                     elevation: 0.0,
                     title: Text("Menu"),
-                    backgroundColor: Colors.pink),
+                    backgroundColor: kPrimaryColour),
                 body: Column(children: <Widget>[
                   ListTile(title: Text("Dashboard")),
                   ListTile(title: Text("Arrivals")),
@@ -113,7 +75,7 @@ class LandingPage extends StatelessWidget {
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 35.0,
-                              color: Colors.pink,
+                              color: kPrimaryColour,
                             ),
                           ),
                         ),
@@ -121,89 +83,97 @@ class LandingPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           //crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            DashContainer(
-                                buttonName: 'Ledger',
-                                onPressed: (){
-                                  Navigator.pushNamed(context, ShowLedger.id);
-                                }
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: DashContainer(
+                                    buttonName: 'Ledger Statement',
+                                    onPressed: (){
+                                      Navigator.pushNamed(context, ShowLedger.id);
+                                    }
+                                ),
+                              ),
                             ),
-                            SizedBox(
-                              width: 50.0,
+                            // SizedBox(
+                            //   width: 50.0,
+                            // ),
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: DashContainer(
+                                    buttonName: 'New Profile',
+                                    onPressed: (){
+                                      Navigator.pushNamed(context, NewProfile.id);
+                                    }
+                                ),
+                              ),
                             ),
-                            DashContainer(
-                                buttonName: 'Add New Farmer',
-                                onPressed: (){
-                                  Navigator.pushNamed(context, NewFarmer.id);
-                                }
+                            // SizedBox(
+                            //   width: 50.0,
+                            // ),
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: DashContainer(
+                                    buttonName: 'Profile List',
+                                    onPressed: (){
+                                      Navigator.pushNamed(context,ViewProfile.id);
+                                    }
+                                ),
+                              ),
                             ),
-                            SizedBox(
-                              width: 50.0,
+                            // SizedBox(
+                            //   width: 50.0,
+                            // ),
+
+                          ],),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          //crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: DashContainer(
+                                    buttonName: 'Accounts Payable',
+                                    onPressed: (){
+                                      Navigator.pushNamed(context,CashPayment.id);
+                                    }
+                                ),
+                              ),
                             ),
-                            DashContainer(
-                                buttonName: 'Farmer List',
-                                onPressed: (){
-                                  Navigator.pushNamed(context,ViewFarmer.id);
-                                }
+                            // SizedBox(
+                            //   width: 50.0,
+                            // ),
+
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: DashContainer(
+                                    buttonName: 'Accounts Receivable',
+                                    onPressed: (){
+                                      Navigator.pushNamed(context,AcctReceivable.id);
+                                    }
+                                ),
+                              ),
                             ),
-                            SizedBox(
-                              width: 50.0,
-                            ),
-                            DashContainer(
-                                buttonName: 'Cash Payments',
-                                onPressed: (){
-                                  Navigator.pushNamed(context,CashPayment.id);
-                                }
+
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: DashContainer(
+                                    buttonName: 'Arrivals',
+                                    onPressed: (){
+                                      Navigator.pushNamed(context,Arrivals.id);
+                                    }
+                                ),
+                              ),
                             ),
                           ],),
                       ],
                     ),
                   ),
-
-                  // Expanded(
-                  //   child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.center,
-                  //     //crossAxisAlignment: CrossAxisAlignment.start,
-                  //       children: [
-                  //         DashContainer(
-                  //           buttonName: 'Ledger',
-                  //           onPressed: (){
-                  //             Navigator.pushNamed(context, ShowLedger.id);
-                  //           }
-                  //           ),
-                  //         SizedBox(
-                  //           width: 50.0,
-                  //         ),
-                  //         DashContainer(
-                  //             buttonName: 'Farmer Profile',
-                  //             onPressed: (){
-                  //               Navigator.pushNamed(context, NewFarmer.id);
-                  //             }
-                  //         ),
-                  //       ],),
-                  // ),
-            //SizedBox(height: 50.0,),
-            // Expanded(
-            //   child:
-            //       Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            //     DashContainer(),
-            //     SizedBox(
-            //       width: 50.0,
-            //     ),
-            //     DashContainer(),
-            //     SizedBox(
-            //       width: 50.0,
-            //     ),
-            //     DashContainer(),
-            //     SizedBox(
-            //       width: 50.0,
-            //     ),
-            //     DashContainer(),
-            //     SizedBox(
-            //       width: 50.0,
-            //     ),
-            //     DashContainer(),
-            //   ]),
-            // ),
           ],
         )
       )
